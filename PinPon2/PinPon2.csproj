@@ -86,5 +86,8 @@
   <ItemGroup>
     <None Include="pictures\playervsplayer.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="pictures\home-page.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartScreen));
             this.label1 = new System.Windows.Forms.Label();
             this.title_txt = new System.Windows.Forms.Label();
             this.gamepanel = new System.Windows.Forms.Panel();
+            this.player1name_txt = new System.Windows.Forms.Label();
+            this.player2name_txt = new System.Windows.Forms.Label();
+            this.timer_txt = new System.Windows.Forms.Label();
+            this.score2 = new System.Windows.Forms.Label();
+            this.score1 = new System.Windows.Forms.Label();
+            this.score_txt2 = new System.Windows.Forms.Label();
+            this.score_txt1 = new System.Windows.Forms.Label();
             this.menubtn = new System.Windows.Forms.Button();
             this.racket1 = new System.Windows.Forms.PictureBox();
             this.racket2 = new System.Windows.Forms.PictureBox();
@@ -40,13 +48,8 @@
             this.topwall = new System.Windows.Forms.PictureBox();
             this.btn_playervsplayer = new System.Windows.Forms.Button();
             this.btn_playervsai = new System.Windows.Forms.Button();
-            this.score_txt1 = new System.Windows.Forms.Label();
-            this.score_txt2 = new System.Windows.Forms.Label();
-            this.score1 = new System.Windows.Forms.Label();
-            this.score2 = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Label();
-            this.player2name_txt = new System.Windows.Forms.Label();
-            this.player1name_txt = new System.Windows.Forms.Label();
+            this.gametimer = new System.Windows.Forms.Timer(this.components);
+            this.balltimer = new System.Windows.Forms.Timer(this.components);
             this.gamepanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.racket1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket2)).BeginInit();
@@ -78,7 +81,7 @@
             // 
             this.gamepanel.Controls.Add(this.player1name_txt);
             this.gamepanel.Controls.Add(this.player2name_txt);
-            this.gamepanel.Controls.Add(this.timer);
+            this.gamepanel.Controls.Add(this.timer_txt);
             this.gamepanel.Controls.Add(this.score2);
             this.gamepanel.Controls.Add(this.score1);
             this.gamepanel.Controls.Add(this.score_txt2);
@@ -95,6 +98,83 @@
             this.gamepanel.Size = new System.Drawing.Size(984, 461);
             this.gamepanel.TabIndex = 4;
             this.gamepanel.Visible = false;
+            // 
+            // player1name_txt
+            // 
+            this.player1name_txt.BackColor = System.Drawing.Color.Firebrick;
+            this.player1name_txt.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.player1name_txt.ForeColor = System.Drawing.Color.White;
+            this.player1name_txt.Location = new System.Drawing.Point(15, 15);
+            this.player1name_txt.Name = "player1name_txt";
+            this.player1name_txt.Size = new System.Drawing.Size(80, 20);
+            this.player1name_txt.TabIndex = 12;
+            this.player1name_txt.Text = "Player1";
+            // 
+            // player2name_txt
+            // 
+            this.player2name_txt.BackColor = System.Drawing.Color.Firebrick;
+            this.player2name_txt.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.player2name_txt.ForeColor = System.Drawing.Color.White;
+            this.player2name_txt.Location = new System.Drawing.Point(860, 15);
+            this.player2name_txt.Name = "player2name_txt";
+            this.player2name_txt.Size = new System.Drawing.Size(100, 20);
+            this.player2name_txt.TabIndex = 11;
+            this.player2name_txt.Text = "Computer";
+            // 
+            // timer_txt
+            // 
+            this.timer_txt.BackColor = System.Drawing.Color.Transparent;
+            this.timer_txt.Font = new System.Drawing.Font("Showcard Gothic", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timer_txt.ForeColor = System.Drawing.Color.White;
+            this.timer_txt.Location = new System.Drawing.Point(465, 55);
+            this.timer_txt.Name = "timer_txt";
+            this.timer_txt.Size = new System.Drawing.Size(60, 30);
+            this.timer_txt.TabIndex = 10;
+            this.timer_txt.Text = "120";
+            // 
+            // score2
+            // 
+            this.score2.BackColor = System.Drawing.Color.Transparent;
+            this.score2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.score2.ForeColor = System.Drawing.Color.White;
+            this.score2.Location = new System.Drawing.Point(925, 60);
+            this.score2.Name = "score2";
+            this.score2.Size = new System.Drawing.Size(30, 20);
+            this.score2.TabIndex = 9;
+            this.score2.Text = "0";
+            // 
+            // score1
+            // 
+            this.score1.BackColor = System.Drawing.Color.Transparent;
+            this.score1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.score1.ForeColor = System.Drawing.Color.White;
+            this.score1.Location = new System.Drawing.Point(80, 60);
+            this.score1.Name = "score1";
+            this.score1.Size = new System.Drawing.Size(30, 20);
+            this.score1.TabIndex = 8;
+            this.score1.Text = "0";
+            // 
+            // score_txt2
+            // 
+            this.score_txt2.BackColor = System.Drawing.Color.Transparent;
+            this.score_txt2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.score_txt2.ForeColor = System.Drawing.Color.White;
+            this.score_txt2.Location = new System.Drawing.Point(860, 60);
+            this.score_txt2.Name = "score_txt2";
+            this.score_txt2.Size = new System.Drawing.Size(70, 20);
+            this.score_txt2.TabIndex = 7;
+            this.score_txt2.Text = "Score :";
+            // 
+            // score_txt1
+            // 
+            this.score_txt1.BackColor = System.Drawing.Color.Transparent;
+            this.score_txt1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.score_txt1.ForeColor = System.Drawing.Color.White;
+            this.score_txt1.Location = new System.Drawing.Point(15, 60);
+            this.score_txt1.Name = "score_txt1";
+            this.score_txt1.Size = new System.Drawing.Size(70, 20);
+            this.score_txt1.TabIndex = 6;
+            this.score_txt1.Text = "Score :";
             // 
             // menubtn
             // 
@@ -176,82 +256,15 @@
             this.btn_playervsai.UseVisualStyleBackColor = true;
             this.btn_playervsai.Click += new System.EventHandler(this.btn_playervsai_Click);
             // 
-            // score_txt1
+            // gametimer
             // 
-            this.score_txt1.BackColor = System.Drawing.Color.Transparent;
-            this.score_txt1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score_txt1.ForeColor = System.Drawing.Color.White;
-            this.score_txt1.Location = new System.Drawing.Point(15, 60);
-            this.score_txt1.Name = "score_txt1";
-            this.score_txt1.Size = new System.Drawing.Size(70, 20);
-            this.score_txt1.TabIndex = 6;
-            this.score_txt1.Text = "Score :";
+            this.gametimer.Interval = 1000;
+            this.gametimer.Tick += new System.EventHandler(this.gametimer_Tick);
             // 
-            // score_txt2
+            // balltimer
             // 
-            this.score_txt2.BackColor = System.Drawing.Color.Transparent;
-            this.score_txt2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score_txt2.ForeColor = System.Drawing.Color.White;
-            this.score_txt2.Location = new System.Drawing.Point(860, 60);
-            this.score_txt2.Name = "score_txt2";
-            this.score_txt2.Size = new System.Drawing.Size(70, 20);
-            this.score_txt2.TabIndex = 7;
-            this.score_txt2.Text = "Score :";
-            // 
-            // score1
-            // 
-            this.score1.BackColor = System.Drawing.Color.Transparent;
-            this.score1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score1.ForeColor = System.Drawing.Color.White;
-            this.score1.Location = new System.Drawing.Point(80, 60);
-            this.score1.Name = "score1";
-            this.score1.Size = new System.Drawing.Size(30, 20);
-            this.score1.TabIndex = 8;
-            this.score1.Text = "0";
-            // 
-            // score2
-            // 
-            this.score2.BackColor = System.Drawing.Color.Transparent;
-            this.score2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score2.ForeColor = System.Drawing.Color.White;
-            this.score2.Location = new System.Drawing.Point(925, 60);
-            this.score2.Name = "score2";
-            this.score2.Size = new System.Drawing.Size(30, 20);
-            this.score2.TabIndex = 9;
-            this.score2.Text = "0";
-            // 
-            // timer
-            // 
-            this.timer.BackColor = System.Drawing.Color.Transparent;
-            this.timer.Font = new System.Drawing.Font("Showcard Gothic", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timer.ForeColor = System.Drawing.Color.White;
-            this.timer.Location = new System.Drawing.Point(465, 55);
-            this.timer.Name = "timer";
-            this.timer.Size = new System.Drawing.Size(45, 30);
-            this.timer.TabIndex = 10;
-            this.timer.Text = "120";
-            // 
-            // player2name_txt
-            // 
-            this.player2name_txt.BackColor = System.Drawing.Color.Firebrick;
-            this.player2name_txt.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player2name_txt.ForeColor = System.Drawing.Color.White;
-            this.player2name_txt.Location = new System.Drawing.Point(860, 15);
-            this.player2name_txt.Name = "player2name_txt";
-            this.player2name_txt.Size = new System.Drawing.Size(100, 20);
-            this.player2name_txt.TabIndex = 11;
-            this.player2name_txt.Text = "Computer";
-            // 
-            // player1name_txt
-            // 
-            this.player1name_txt.BackColor = System.Drawing.Color.Firebrick;
-            this.player1name_txt.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.player1name_txt.ForeColor = System.Drawing.Color.White;
-            this.player1name_txt.Location = new System.Drawing.Point(15, 15);
-            this.player1name_txt.Name = "player1name_txt";
-            this.player1name_txt.Size = new System.Drawing.Size(80, 20);
-            this.player1name_txt.TabIndex = 12;
-            this.player1name_txt.Text = "Player1";
+            this.balltimer.Interval = 10;
+            this.balltimer.Tick += new System.EventHandler(this.balltimer_Tick);
             // 
             // StartScreen
             // 
@@ -296,9 +309,11 @@
         private System.Windows.Forms.Label score2;
         private System.Windows.Forms.Label score1;
         private System.Windows.Forms.Label score_txt2;
-        private System.Windows.Forms.Label timer;
+        private System.Windows.Forms.Label timer_txt;
         private System.Windows.Forms.Label player1name_txt;
         private System.Windows.Forms.Label player2name_txt;
+        private System.Windows.Forms.Timer gametimer;
+        private System.Windows.Forms.Timer balltimer;
     }
 }
 

@@ -50,6 +50,7 @@
             this.btn_playervsai = new System.Windows.Forms.Button();
             this.gametimer = new System.Windows.Forms.Timer(this.components);
             this.balltimer = new System.Windows.Forms.Timer(this.components);
+            this.movement_timer = new System.Windows.Forms.Timer(this.components);
             this.gamepanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.racket1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket2)).BeginInit();
@@ -266,6 +267,11 @@
             this.balltimer.Interval = 10;
             this.balltimer.Tick += new System.EventHandler(this.balltimer_Tick);
             // 
+            // movement_timer
+            // 
+            this.movement_timer.Interval = 20;
+            this.movement_timer.Tick += new System.EventHandler(this.movement_timer_Tick);
+            // 
             // StartScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -281,6 +287,8 @@
             this.MaximizeBox = false;
             this.Name = "StartScreen";
             this.Text = "PinPon2";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StartScreen_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.StartScreen_KeyUp);
             this.gamepanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.racket1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket2)).EndInit();
@@ -314,6 +322,7 @@
         private System.Windows.Forms.Label player2name_txt;
         private System.Windows.Forms.Timer gametimer;
         private System.Windows.Forms.Timer balltimer;
+        private System.Windows.Forms.Timer movement_timer;
     }
 }
 

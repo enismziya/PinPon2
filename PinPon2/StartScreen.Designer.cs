@@ -33,6 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.title_txt = new System.Windows.Forms.Label();
             this.gamepanel = new System.Windows.Forms.Panel();
+            this.pausepanel = new System.Windows.Forms.Panel();
+            this.pausepanel_playbtn = new System.Windows.Forms.Button();
+            this.pausepanel_menubtn = new System.Windows.Forms.Button();
+            this.pausepanel_restartbtn = new System.Windows.Forms.Button();
+            this.paused_txt = new System.Windows.Forms.Label();
+            this.restartbtn = new System.Windows.Forms.Button();
+            this.pausebtn = new System.Windows.Forms.Button();
             this.player1name_txt = new System.Windows.Forms.Label();
             this.player2name_txt = new System.Windows.Forms.Label();
             this.timer_txt = new System.Windows.Forms.Label();
@@ -46,17 +53,23 @@
             this.bottomwall = new System.Windows.Forms.PictureBox();
             this.ball = new System.Windows.Forms.PictureBox();
             this.topwall = new System.Windows.Forms.PictureBox();
-            this.btn_playervsplayer = new System.Windows.Forms.Button();
-            this.btn_playervsai = new System.Windows.Forms.Button();
             this.gametimer = new System.Windows.Forms.Timer(this.components);
             this.balltimer = new System.Windows.Forms.Timer(this.components);
             this.movement_timer = new System.Windows.Forms.Timer(this.components);
+            this.btn_playervsplayer = new System.Windows.Forms.Button();
+            this.btn_playervsai = new System.Windows.Forms.Button();
+            this.winner_panel = new System.Windows.Forms.Panel();
+            this.winner_menubtn = new System.Windows.Forms.Button();
+            this.winner_restartbtn = new System.Windows.Forms.Button();
+            this.winner_txt = new System.Windows.Forms.Label();
             this.gamepanel.SuspendLayout();
+            this.pausepanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.racket1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomwall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topwall)).BeginInit();
+            this.winner_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -80,6 +93,10 @@
             // 
             // gamepanel
             // 
+            this.gamepanel.Controls.Add(this.winner_panel);
+            this.gamepanel.Controls.Add(this.pausepanel);
+            this.gamepanel.Controls.Add(this.restartbtn);
+            this.gamepanel.Controls.Add(this.pausebtn);
             this.gamepanel.Controls.Add(this.player1name_txt);
             this.gamepanel.Controls.Add(this.player2name_txt);
             this.gamepanel.Controls.Add(this.timer_txt);
@@ -100,12 +117,91 @@
             this.gamepanel.TabIndex = 4;
             this.gamepanel.Visible = false;
             // 
+            // pausepanel
+            // 
+            this.pausepanel.BackColor = System.Drawing.Color.Transparent;
+            this.pausepanel.Controls.Add(this.pausepanel_playbtn);
+            this.pausepanel.Controls.Add(this.pausepanel_menubtn);
+            this.pausepanel.Controls.Add(this.pausepanel_restartbtn);
+            this.pausepanel.Controls.Add(this.paused_txt);
+            this.pausepanel.Location = new System.Drawing.Point(300, 60);
+            this.pausepanel.Name = "pausepanel";
+            this.pausepanel.Size = new System.Drawing.Size(380, 330);
+            this.pausepanel.TabIndex = 15;
+            this.pausepanel.Visible = false;
+            // 
+            // pausepanel_playbtn
+            // 
+            this.pausepanel_playbtn.BackgroundImage = global::PinPon2.Properties.Resources.play;
+            this.pausepanel_playbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pausepanel_playbtn.Location = new System.Drawing.Point(30, 200);
+            this.pausepanel_playbtn.Name = "pausepanel_playbtn";
+            this.pausepanel_playbtn.Size = new System.Drawing.Size(75, 75);
+            this.pausepanel_playbtn.TabIndex = 16;
+            this.pausepanel_playbtn.UseVisualStyleBackColor = true;
+            this.pausepanel_playbtn.Click += new System.EventHandler(this.pausepanel_playbtn_Click);
+            // 
+            // pausepanel_menubtn
+            // 
+            this.pausepanel_menubtn.BackgroundImage = global::PinPon2.Properties.Resources.home_page;
+            this.pausepanel_menubtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pausepanel_menubtn.Location = new System.Drawing.Point(150, 200);
+            this.pausepanel_menubtn.Name = "pausepanel_menubtn";
+            this.pausepanel_menubtn.Size = new System.Drawing.Size(75, 75);
+            this.pausepanel_menubtn.TabIndex = 16;
+            this.pausepanel_menubtn.UseVisualStyleBackColor = true;
+            this.pausepanel_menubtn.Click += new System.EventHandler(this.pausepanel_menubtn_Click);
+            // 
+            // pausepanel_restartbtn
+            // 
+            this.pausepanel_restartbtn.BackgroundImage = global::PinPon2.Properties.Resources.restart;
+            this.pausepanel_restartbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pausepanel_restartbtn.Location = new System.Drawing.Point(270, 200);
+            this.pausepanel_restartbtn.Name = "pausepanel_restartbtn";
+            this.pausepanel_restartbtn.Size = new System.Drawing.Size(75, 75);
+            this.pausepanel_restartbtn.TabIndex = 17;
+            this.pausepanel_restartbtn.UseVisualStyleBackColor = true;
+            this.pausepanel_restartbtn.Click += new System.EventHandler(this.pausepanel_restartbtn_Click);
+            // 
+            // paused_txt
+            // 
+            this.paused_txt.Font = new System.Drawing.Font("Elephant", 47.99999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paused_txt.ForeColor = System.Drawing.Color.White;
+            this.paused_txt.Location = new System.Drawing.Point(0, 60);
+            this.paused_txt.Name = "paused_txt";
+            this.paused_txt.Size = new System.Drawing.Size(380, 80);
+            this.paused_txt.TabIndex = 0;
+            this.paused_txt.Text = "PAUSED";
+            this.paused_txt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // restartbtn
+            // 
+            this.restartbtn.BackgroundImage = global::PinPon2.Properties.Resources.restart;
+            this.restartbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.restartbtn.Location = new System.Drawing.Point(510, 15);
+            this.restartbtn.Name = "restartbtn";
+            this.restartbtn.Size = new System.Drawing.Size(24, 24);
+            this.restartbtn.TabIndex = 14;
+            this.restartbtn.UseVisualStyleBackColor = true;
+            this.restartbtn.Click += new System.EventHandler(this.restartbtn_Click);
+            // 
+            // pausebtn
+            // 
+            this.pausebtn.BackgroundImage = global::PinPon2.Properties.Resources.pause;
+            this.pausebtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pausebtn.Location = new System.Drawing.Point(440, 15);
+            this.pausebtn.Name = "pausebtn";
+            this.pausebtn.Size = new System.Drawing.Size(24, 24);
+            this.pausebtn.TabIndex = 13;
+            this.pausebtn.UseVisualStyleBackColor = true;
+            this.pausebtn.Click += new System.EventHandler(this.pausebtn_Click);
+            // 
             // player1name_txt
             // 
             this.player1name_txt.BackColor = System.Drawing.Color.Firebrick;
             this.player1name_txt.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.player1name_txt.ForeColor = System.Drawing.Color.White;
-            this.player1name_txt.Location = new System.Drawing.Point(15, 15);
+            this.player1name_txt.Location = new System.Drawing.Point(15, 420);
             this.player1name_txt.Name = "player1name_txt";
             this.player1name_txt.Size = new System.Drawing.Size(80, 20);
             this.player1name_txt.TabIndex = 12;
@@ -116,7 +212,7 @@
             this.player2name_txt.BackColor = System.Drawing.Color.Firebrick;
             this.player2name_txt.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.player2name_txt.ForeColor = System.Drawing.Color.White;
-            this.player2name_txt.Location = new System.Drawing.Point(860, 15);
+            this.player2name_txt.Location = new System.Drawing.Point(860, 420);
             this.player2name_txt.Name = "player2name_txt";
             this.player2name_txt.Size = new System.Drawing.Size(100, 20);
             this.player2name_txt.TabIndex = 11;
@@ -135,10 +231,10 @@
             // 
             // score2
             // 
-            this.score2.BackColor = System.Drawing.Color.Transparent;
+            this.score2.BackColor = System.Drawing.Color.Firebrick;
             this.score2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.score2.ForeColor = System.Drawing.Color.White;
-            this.score2.Location = new System.Drawing.Point(925, 60);
+            this.score2.Location = new System.Drawing.Point(925, 20);
             this.score2.Name = "score2";
             this.score2.Size = new System.Drawing.Size(30, 20);
             this.score2.TabIndex = 9;
@@ -146,10 +242,10 @@
             // 
             // score1
             // 
-            this.score1.BackColor = System.Drawing.Color.Transparent;
+            this.score1.BackColor = System.Drawing.Color.Firebrick;
             this.score1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.score1.ForeColor = System.Drawing.Color.White;
-            this.score1.Location = new System.Drawing.Point(80, 60);
+            this.score1.Location = new System.Drawing.Point(80, 20);
             this.score1.Name = "score1";
             this.score1.Size = new System.Drawing.Size(30, 20);
             this.score1.TabIndex = 8;
@@ -157,10 +253,10 @@
             // 
             // score_txt2
             // 
-            this.score_txt2.BackColor = System.Drawing.Color.Transparent;
+            this.score_txt2.BackColor = System.Drawing.Color.Firebrick;
             this.score_txt2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.score_txt2.ForeColor = System.Drawing.Color.White;
-            this.score_txt2.Location = new System.Drawing.Point(860, 60);
+            this.score_txt2.Location = new System.Drawing.Point(860, 20);
             this.score_txt2.Name = "score_txt2";
             this.score_txt2.Size = new System.Drawing.Size(70, 20);
             this.score_txt2.TabIndex = 7;
@@ -168,10 +264,10 @@
             // 
             // score_txt1
             // 
-            this.score_txt1.BackColor = System.Drawing.Color.Transparent;
+            this.score_txt1.BackColor = System.Drawing.Color.Firebrick;
             this.score_txt1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.score_txt1.ForeColor = System.Drawing.Color.White;
-            this.score_txt1.Location = new System.Drawing.Point(15, 60);
+            this.score_txt1.Location = new System.Drawing.Point(15, 20);
             this.score_txt1.Name = "score_txt1";
             this.score_txt1.Size = new System.Drawing.Size(70, 20);
             this.score_txt1.TabIndex = 6;
@@ -233,6 +329,21 @@
             this.topwall.TabIndex = 0;
             this.topwall.TabStop = false;
             // 
+            // gametimer
+            // 
+            this.gametimer.Interval = 1000;
+            this.gametimer.Tick += new System.EventHandler(this.gametimer_Tick);
+            // 
+            // balltimer
+            // 
+            this.balltimer.Interval = 10;
+            this.balltimer.Tick += new System.EventHandler(this.balltimer_Tick);
+            // 
+            // movement_timer
+            // 
+            this.movement_timer.Interval = 10;
+            this.movement_timer.Tick += new System.EventHandler(this.movement_timer_Tick);
+            // 
             // btn_playervsplayer
             // 
             this.btn_playervsplayer.BackgroundImage = global::PinPon2.Properties.Resources.playervsplayer;
@@ -257,20 +368,50 @@
             this.btn_playervsai.UseVisualStyleBackColor = true;
             this.btn_playervsai.Click += new System.EventHandler(this.btn_playervsai_Click);
             // 
-            // gametimer
+            // winner_panel
             // 
-            this.gametimer.Interval = 1000;
-            this.gametimer.Tick += new System.EventHandler(this.gametimer_Tick);
+            this.winner_panel.BackColor = System.Drawing.Color.Transparent;
+            this.winner_panel.Controls.Add(this.winner_menubtn);
+            this.winner_panel.Controls.Add(this.winner_restartbtn);
+            this.winner_panel.Controls.Add(this.winner_txt);
+            this.winner_panel.Location = new System.Drawing.Point(300, 55);
+            this.winner_panel.Name = "winner_panel";
+            this.winner_panel.Size = new System.Drawing.Size(380, 340);
+            this.winner_panel.TabIndex = 18;
+            this.winner_panel.Visible = false;
             // 
-            // balltimer
+            // winner_menubtn
             // 
-            this.balltimer.Interval = 10;
-            this.balltimer.Tick += new System.EventHandler(this.balltimer_Tick);
+            this.winner_menubtn.BackgroundImage = global::PinPon2.Properties.Resources.home_page;
+            this.winner_menubtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.winner_menubtn.Location = new System.Drawing.Point(100, 230);
+            this.winner_menubtn.Name = "winner_menubtn";
+            this.winner_menubtn.Size = new System.Drawing.Size(75, 75);
+            this.winner_menubtn.TabIndex = 16;
+            this.winner_menubtn.UseVisualStyleBackColor = true;
+            this.winner_menubtn.Click += new System.EventHandler(this.winner_menubtn_Click);
             // 
-            // movement_timer
+            // winner_restartbtn
             // 
-            this.movement_timer.Interval = 20;
-            this.movement_timer.Tick += new System.EventHandler(this.movement_timer_Tick);
+            this.winner_restartbtn.BackgroundImage = global::PinPon2.Properties.Resources.restart;
+            this.winner_restartbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.winner_restartbtn.Location = new System.Drawing.Point(200, 230);
+            this.winner_restartbtn.Name = "winner_restartbtn";
+            this.winner_restartbtn.Size = new System.Drawing.Size(75, 75);
+            this.winner_restartbtn.TabIndex = 17;
+            this.winner_restartbtn.UseVisualStyleBackColor = true;
+            this.winner_restartbtn.Click += new System.EventHandler(this.winner_restartbtn_Click);
+            // 
+            // winner_txt
+            // 
+            this.winner_txt.Font = new System.Drawing.Font("Elephant", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winner_txt.ForeColor = System.Drawing.Color.White;
+            this.winner_txt.Location = new System.Drawing.Point(0, 2);
+            this.winner_txt.Name = "winner_txt";
+            this.winner_txt.Size = new System.Drawing.Size(380, 200);
+            this.winner_txt.TabIndex = 0;
+            this.winner_txt.Text = "COMPUTER WIN!";
+            this.winner_txt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // StartScreen
             // 
@@ -287,14 +428,17 @@
             this.MaximizeBox = false;
             this.Name = "StartScreen";
             this.Text = "PinPon2";
+            this.Load += new System.EventHandler(this.StartScreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StartScreen_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.StartScreen_KeyUp);
             this.gamepanel.ResumeLayout(false);
+            this.pausepanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.racket1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.racket2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomwall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.topwall)).EndInit();
+            this.winner_panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,6 +467,17 @@
         private System.Windows.Forms.Timer gametimer;
         private System.Windows.Forms.Timer balltimer;
         private System.Windows.Forms.Timer movement_timer;
+        private System.Windows.Forms.Button pausebtn;
+        private System.Windows.Forms.Button restartbtn;
+        private System.Windows.Forms.Panel pausepanel;
+        private System.Windows.Forms.Label paused_txt;
+        private System.Windows.Forms.Button pausepanel_playbtn;
+        private System.Windows.Forms.Button pausepanel_menubtn;
+        private System.Windows.Forms.Button pausepanel_restartbtn;
+        private System.Windows.Forms.Panel winner_panel;
+        private System.Windows.Forms.Button winner_menubtn;
+        private System.Windows.Forms.Button winner_restartbtn;
+        private System.Windows.Forms.Label winner_txt;
     }
 }
 

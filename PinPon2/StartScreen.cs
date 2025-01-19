@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PinPon2
@@ -9,7 +10,7 @@ namespace PinPon2
     {
         //gamemode 1 = player vs player, gamemode 2 = player vs ai
         private int gamemode;
-        public int gametime = 120;
+        public int gametime;
         public int ball_speedx = 3, ball_speedy = 3;
         public int intscore1 = 0, intscore2 = 0;
         public StartScreen()
@@ -25,18 +26,111 @@ namespace PinPon2
         private void btn_playervsplayer_Click(object sender, EventArgs e)
         {
             gamemode = 1;
-            player2name_txt.Text = "Player2";
-            gamepanel.Visible = true;
-            StartActions();
+            optianspanel_actions();
         }
 
         private void btn_playervsai_Click(object sender, EventArgs e)
         {
             gamemode = 0;
-            player2name_txt.Text = "Computer";
-            gamepanel.Visible = true;
-            StartActions();
+            optianspanel_actions();
         }
+        private void timer30btn_Click(object sender, EventArgs e)
+        {
+            timercount.Text = "30";
+        }
+
+        private void timer60btn_Click(object sender, EventArgs e)
+        {
+            timercount.Text = "60";
+        }
+
+        private void timer120btn_Click(object sender, EventArgs e)
+        {
+            timercount.Text = "120";
+        }
+
+        private Label p1label = new Label();
+        private Label p2label = new Label();
+        private TextBox p1textbox = new TextBox();
+        private TextBox p2textbox = new TextBox();
+        private Font textfonts = new Font("Gill Sans Ultra Bold", 16);
+        private void optianspanel_actions()
+        {
+            if (gamemode == 1)
+            {
+                startpanel.Visible = true;
+                startpanel.Controls.Add(p1label);
+                p1label.Text = "Player1 Name";
+                p1label.Font = textfonts;
+                p1label.Location = new Point(230, 140);
+                p1label.ForeColor = Color.White;
+                p1label.AutoSize = true;
+                startpanel.Controls.Add(p2label);
+                p2label.Text = "Player2 Name";
+                p2label.Font = textfonts;
+                p2label.Location = new Point(565, 140);
+                p2label.ForeColor = Color.White;
+                p2label.AutoSize = true;
+                startpanel.Controls.Add(p1textbox);
+                p1textbox.Font = textfonts;
+                p1textbox.Location = new Point(240, 190);
+                p1textbox.MaxLength = 8;
+                p1textbox.Size = new Size(180, 32);
+                startpanel.Controls.Add(p2textbox);
+                p2textbox.Font = textfonts;
+                p2textbox.Location = new Point(575, 190);
+                p2textbox.MaxLength = 8;
+                p2textbox.Size = new Size(180, 32);
+            }
+            else 
+            {
+                startpanel.Visible = true;
+                startpanel.Controls.Add(p1label);
+                p1label.Text = "Player1 Name";
+                p1label.Font = textfonts;
+                p1label.Location = new Point(395, 140);
+                p1label.ForeColor = Color.White;
+                p1label.AutoSize = true;
+                startpanel.Controls.Add(p1textbox);
+                p1textbox.Font = textfonts;
+                p1textbox.Location = new Point(404, 190);
+                p1textbox.MaxLength = 8;
+                p1textbox.Size = new Size(180, 32);
+            }
+        }
+        private void optians_startbtn_Click(object sender, EventArgs e)
+        {
+            if (gamemode == 1)
+            {
+                startpanel.Visible = false;
+                gamepanel.Visible = true;
+                if (string.IsNullOrEmpty(p1textbox.Text)) { player1name_txt.Text = "Player1"; }
+                else { player1name_txt.Text = p1textbox.Text; }
+                if (string.IsNullOrEmpty(p2textbox.Text)) { player2name_txt.Text = "Player2"; }
+                else { player2name_txt.Text = p2textbox.Text; }
+                gametime = Int32.Parse(timercount.Text);
+                timer_txt.Text = gametime.ToString();
+                StartActions();
+            }
+            else 
+            {
+                startpanel.Visible = false;
+                gamepanel.Visible= true;
+                if (string.IsNullOrEmpty(p1textbox.Text)) { player1name_txt.Text = "Player1"; }
+                else { player1name_txt.Text = p1textbox.Text; }
+                player2name_txt.Text = "Computer";
+                gametime = Int32.Parse(timercount.Text);
+                timer_txt.Text = gametime.ToString();
+                StartActions();
+            }
+        }
+
+        private void options_menubtn_Click(object sender, EventArgs e)
+        {
+            startpanel.Visible = false;
+            MenuActions();
+        }
+
         private void pausebtn_Click(object sender, EventArgs e)
         {
             pausepanel.Visible = true;
@@ -117,6 +211,15 @@ namespace PinPon2
             gametimer.Enabled = false;
             balltimer.Enabled = false;
             movement_timer.Enabled = false;
+            p1textbox.Text = "";
+            p2textbox.Text = "";
+            timercount.Text = "120";
+            player1name_txt.Text = "";
+            player2name_txt.Text = "";
+            startpanel.Controls.Remove(p1label);
+            startpanel.Controls.Remove(p1textbox);
+            startpanel.Controls.Remove(p2label);
+            startpanel.Controls.Remove(p2textbox);
             RestartActions();
         }
 
@@ -171,11 +274,11 @@ namespace PinPon2
                 if (ball_speedx < 0) { ball_speedx -= 1; }
                 else { ball_speedx += 1; }
             }
-            else if (ball.Left <= racket1.Right && ball.Left >= racket1.Left && ball.Top >= racket1.Top && ball.Bottom <= racket1.Bottom)
-            {
+            else if (ball.Left <= racket1.Right && ball.Right >= racket1.Left && ball.Bottom >= racket1.Top && ball.Top <= racket1.Bottom)
+                {
                 ball_speedx = -ball_speedx;
             }
-            else if (ball.Right >= racket2.Left && ball.Right <= racket2.Right && ball.Top >= racket2.Top && ball.Bottom <= racket2.Bottom)
+            else if (ball.Right >= racket2.Left && ball.Left <= racket2.Right && ball.Bottom >= racket2.Top && ball.Top <= racket2.Bottom)
             {
                 ball_speedx = -ball_speedx;
             }
@@ -217,9 +320,6 @@ namespace PinPon2
                 racket2.Location = new Point(racket2.Location.X, racket2.Location.Y + 3);
             }
         }
-
-
-
         private void StartScreen_KeyDown(object sender, KeyEventArgs e)
         {
             if (!pressedkeys.Contains(e.KeyCode))

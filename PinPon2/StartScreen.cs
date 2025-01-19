@@ -51,6 +51,9 @@ namespace PinPon2
 
         private Label p1label = new Label();
         private Label p2label = new Label();
+        private Label difficulty = new Label();
+        private Button middif = new Button();
+        private Button harddiff = new Button();
         private TextBox p1textbox = new TextBox();
         private TextBox p2textbox = new TextBox();
         private Font textfonts = new Font("Gill Sans Ultra Bold", 16);
@@ -88,15 +91,48 @@ namespace PinPon2
                 startpanel.Controls.Add(p1label);
                 p1label.Text = "Player1 Name";
                 p1label.Font = textfonts;
-                p1label.Location = new Point(395, 140);
+                p1label.Location = new Point(230, 140);
                 p1label.ForeColor = Color.White;
                 p1label.AutoSize = true;
                 startpanel.Controls.Add(p1textbox);
                 p1textbox.Font = textfonts;
-                p1textbox.Location = new Point(404, 190);
+                p1textbox.Location = new Point(240, 190);
                 p1textbox.MaxLength = 8;
                 p1textbox.Size = new Size(180, 32);
+                startpanel.Controls.Add(difficulty);
+                difficulty.Text = "Difficulty";
+                difficulty.Font = textfonts;
+                difficulty.Location = new Point(555, 140);
+                difficulty.ForeColor = Color.White;
+                difficulty.AutoSize = true;
+                startpanel.Controls.Add(middif);
+                middif.Font = new Font("Gill Sans Ultra Bold", 12);
+                middif.Location = new Point(570, 170);
+                middif.ForeColor = Color.White;
+                middif.Text = "Medium ✔";
+                middif.AutoSize = true;
+                middif.Click += middiff_Click;
+                startpanel.Controls.Add(harddiff);
+                harddiff.Font = new Font("Gill Sans Ultra Bold", 12);
+                harddiff.Location = new Point(570, 210);
+                harddiff.ForeColor = Color.White;
+                harddiff.Text = "Hard";
+                harddiff.AutoSize = true;
+                harddiff.Click += harddiff_Click;
+
             }
+        }
+
+        private void harddiff_Click(object sender, EventArgs e)
+        {
+            middif.Text = "Medium";
+            harddiff.Text = "Hard ✔";
+        }
+
+        private void middiff_Click(object sender, EventArgs e)
+        {
+            middif.Text = "Medium ✔";
+            harddiff.Text = "Hard";
         }
         private void optians_startbtn_Click(object sender, EventArgs e)
         {
@@ -185,7 +221,7 @@ namespace PinPon2
 
         private void RestartActions()
         {
-            gametime = 120;
+            gametime = Int32.Parse(timercount.Text);
             timer_txt.Text = gametime.ToString();
             ball.Location = new Point(475, 220);
             ball_speedx = 1;
@@ -265,14 +301,14 @@ namespace PinPon2
             if (ball.Bottom >= bottomwall.Top)
             {
                 ball_speedy = -ball_speedy;
-                if (ball_speedx < 0) { ball_speedx -= 1; }
-                else { ball_speedx += 1; }
+                if (ball_speedx < 0) { ball_speedx -= 2; }
+                else { ball_speedx += 2; }
             }
             else if (ball.Top <= topwall.Bottom)
             {
                 ball_speedy = -ball_speedy;
-                if (ball_speedx < 0) { ball_speedx -= 1; }
-                else { ball_speedx += 1; }
+                if (ball_speedx < 0) { ball_speedx -= 2; }
+                else { ball_speedx += 2; }
             }
             else if (ball.Left <= racket1.Right && ball.Right >= racket1.Left && ball.Bottom >= racket1.Top && ball.Top <= racket1.Bottom)
                 {
@@ -303,21 +339,62 @@ namespace PinPon2
 
         private void movement_timer_Tick(object sender, EventArgs e)
         {
-            if (pressedkeys.Contains(Keys.A) && racket1.Top >= topwall.Bottom)
+            if (gamemode == 1)
             {
-                racket1.Location = new Point(racket1.Location.X, racket1.Location.Y - 3);
+                if (pressedkeys.Contains(Keys.A) && racket1.Top >= topwall.Bottom)
+                {
+                    racket1.Location = new Point(racket1.Location.X, racket1.Location.Y - 3);
+                }
+                if (pressedkeys.Contains(Keys.S) && racket1.Bottom <= bottomwall.Top)
+                {
+                    racket1.Location = new Point(racket1.Location.X, racket1.Location.Y + 3);
+                }
+                if (pressedkeys.Contains(Keys.K) && racket2.Top >= topwall.Bottom)
+                {
+                    racket2.Location = new Point(racket2.Location.X, racket2.Location.Y - 3);
+                }
+                if (pressedkeys.Contains(Keys.L) && racket2.Bottom <= bottomwall.Top)
+                {
+                    racket2.Location = new Point(racket2.Location.X, racket2.Location.Y + 3);
+                }
             }
-            if (pressedkeys.Contains(Keys.S) && racket1.Bottom <= bottomwall.Top)
+            else
             {
-                racket1.Location = new Point(racket1.Location.X, racket1.Location.Y + 3);
-            }
-            if (pressedkeys.Contains(Keys.K) && racket2.Top >= topwall.Bottom)
-            {
-                racket2.Location = new Point(racket2.Location.X, racket2.Location.Y - 3);
-            }
-            if (pressedkeys.Contains(Keys.L) && racket2.Bottom <= bottomwall.Top)
-            {
-                racket2.Location = new Point(racket2.Location.X, racket2.Location.Y + 3);
+                 if (pressedkeys.Contains(Keys.A) && racket1.Top >= topwall.Bottom)
+                {
+                    racket1.Location = new Point(racket1.Location.X, racket1.Location.Y - 3);
+                }
+                if (pressedkeys.Contains(Keys.S) && racket1.Bottom <= bottomwall.Top)
+                {
+                    racket1.Location = new Point(racket1.Location.X, racket1.Location.Y + 3);
+                }
+                if(middif.Text == "Medium ✔")
+                {
+                    if (ball_speedx > 0)
+                    {
+                        if (ball.Top <= racket2.Top && racket2.Top >= topwall.Bottom)
+                        {
+                            racket2.Location = new Point(racket2.Location.X, racket2.Location.Y - 3);
+                        }
+                        else if (ball.Bottom >= racket2.Bottom && racket2.Bottom <= bottomwall.Top)
+                        {
+                            racket2.Location = new Point(racket2.Location.X, racket2.Location.Y + 3);
+                        }
+                    }
+                }
+                else
+                {
+                    if (ball.Top <= racket2.Top && racket2.Top >= topwall.Bottom + 20)
+                    {
+                        racket2.Location = new Point(racket2.Location.X, racket2.Location.Y - 3);
+                    }
+                    else if (ball.Bottom >= racket2.Bottom && racket2.Bottom <= bottomwall.Top - 20)
+                    {
+                        racket2.Location = new Point(racket2.Location.X, racket2.Location.Y + 3);
+                    }
+                }
+
+
             }
         }
         private void StartScreen_KeyDown(object sender, KeyEventArgs e)

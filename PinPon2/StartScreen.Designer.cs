@@ -342,7 +342,7 @@
             // racket1
             // 
             this.racket1.BackColor = System.Drawing.Color.White;
-            this.racket1.Location = new System.Drawing.Point(15, 180);
+            this.racket1.Location = new System.Drawing.Point(40, 180);
             this.racket1.Name = "racket1";
             this.racket1.Size = new System.Drawing.Size(20, 100);
             this.racket1.TabIndex = 4;
@@ -351,7 +351,7 @@
             // racket2
             // 
             this.racket2.BackColor = System.Drawing.Color.White;
-            this.racket2.Location = new System.Drawing.Point(950, 180);
+            this.racket2.Location = new System.Drawing.Point(925, 180);
             this.racket2.Name = "racket2";
             this.racket2.Size = new System.Drawing.Size(20, 100);
             this.racket2.TabIndex = 3;

@@ -63,6 +63,7 @@
             this.btn_playervsplayer = new System.Windows.Forms.Button();
             this.btn_playervsai = new System.Windows.Forms.Button();
             this.startpanel = new System.Windows.Forms.Panel();
+            this.infotxt = new System.Windows.Forms.Label();
             this.timercount = new System.Windows.Forms.Label();
             this.optianstimer_txt = new System.Windows.Forms.Label();
             this.timer60btn = new System.Windows.Forms.Button();
@@ -425,6 +426,7 @@
             // 
             // startpanel
             // 
+            this.startpanel.Controls.Add(this.infotxt);
             this.startpanel.Controls.Add(this.timercount);
             this.startpanel.Controls.Add(this.optianstimer_txt);
             this.startpanel.Controls.Add(this.timer60btn);
@@ -440,12 +442,22 @@
             this.startpanel.TabIndex = 5;
             this.startpanel.Visible = false;
             // 
+            // infotxt
+            // 
+            this.infotxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.infotxt.ForeColor = System.Drawing.Color.White;
+            this.infotxt.Location = new System.Drawing.Point(37, 40);
+            this.infotxt.Name = "infotxt";
+            this.infotxt.Size = new System.Drawing.Size(97, 130);
+            this.infotxt.TabIndex = 29;
+            this.infotxt.Text = "Controls: Player1 A for Up S for Down, Player2 K for Up L for Down";
+            // 
             // timercount
             // 
             this.timercount.AutoSize = true;
             this.timercount.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timercount.ForeColor = System.Drawing.Color.White;
-            this.timercount.Location = new System.Drawing.Point(505, 295);
+            this.timercount.Location = new System.Drawing.Point(640, 252);
             this.timercount.Name = "timercount";
             this.timercount.Size = new System.Drawing.Size(67, 30);
             this.timercount.TabIndex = 28;
@@ -456,7 +468,7 @@
             this.optianstimer_txt.AutoSize = true;
             this.optianstimer_txt.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optianstimer_txt.ForeColor = System.Drawing.Color.White;
-            this.optianstimer_txt.Location = new System.Drawing.Point(495, 260);
+            this.optianstimer_txt.Location = new System.Drawing.Point(560, 252);
             this.optianstimer_txt.Name = "optianstimer_txt";
             this.optianstimer_txt.Size = new System.Drawing.Size(85, 30);
             this.optianstimer_txt.TabIndex = 27;
@@ -465,7 +477,7 @@
             // timer60btn
             // 
             this.timer60btn.Font = new System.Drawing.Font("Engravers MT", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timer60btn.Location = new System.Drawing.Point(415, 285);
+            this.timer60btn.Location = new System.Drawing.Point(608, 203);
             this.timer60btn.Name = "timer60btn";
             this.timer60btn.Size = new System.Drawing.Size(52, 30);
             this.timer60btn.TabIndex = 26;
@@ -476,7 +488,7 @@
             // timer120btn
             // 
             this.timer120btn.Font = new System.Drawing.Font("Engravers MT", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timer120btn.Location = new System.Drawing.Point(415, 320);
+            this.timer120btn.Location = new System.Drawing.Point(666, 203);
             this.timer120btn.Name = "timer120btn";
             this.timer120btn.Size = new System.Drawing.Size(52, 30);
             this.timer120btn.TabIndex = 25;
@@ -487,7 +499,7 @@
             // timer30btn
             // 
             this.timer30btn.Font = new System.Drawing.Font("Engravers MT", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timer30btn.Location = new System.Drawing.Point(415, 250);
+            this.timer30btn.Location = new System.Drawing.Point(550, 203);
             this.timer30btn.Name = "timer30btn";
             this.timer30btn.Size = new System.Drawing.Size(52, 30);
             this.timer30btn.TabIndex = 22;
@@ -499,7 +511,7 @@
             // 
             this.options_menubtn.BackgroundImage = global::PinPon2.Properties.Resources.home_page;
             this.options_menubtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.options_menubtn.Location = new System.Drawing.Point(400, 360);
+            this.options_menubtn.Location = new System.Drawing.Point(550, 340);
             this.options_menubtn.Name = "options_menubtn";
             this.options_menubtn.Size = new System.Drawing.Size(75, 75);
             this.options_menubtn.TabIndex = 18;
@@ -510,7 +522,7 @@
             // 
             this.optians_startbtn.BackgroundImage = global::PinPon2.Properties.Resources.play;
             this.optians_startbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.optians_startbtn.Location = new System.Drawing.Point(500, 360);
+            this.optians_startbtn.Location = new System.Drawing.Point(650, 340);
             this.optians_startbtn.Name = "optians_startbtn";
             this.optians_startbtn.Size = new System.Drawing.Size(75, 75);
             this.optians_startbtn.TabIndex = 17;
@@ -605,6 +617,7 @@
         private System.Windows.Forms.Button timer120btn;
         private System.Windows.Forms.Label timercount;
         private System.Windows.Forms.Label optianstimer_txt;
+        private System.Windows.Forms.Label infotxt;
     }
 }
 
